@@ -37,6 +37,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {/* Left Section: Image */}
         <div className="relative max-w-md mx-auto md:max-w-12pax">
           <Image
+       width={0}
+       height={0}
             src={product.image}
             alt={product.title}
             className="w-full h-auto max-w-md md:max-w-full object-cover rounded-md shadow-md"

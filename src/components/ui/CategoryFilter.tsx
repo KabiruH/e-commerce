@@ -85,6 +85,8 @@ export default function ProductFiltering({
               <Card key={product.id}>
                 <Link href={`/product/${product.id}`}>
                   <Image
+                  width={0}
+                  height={0}
                     src={product.image}
                     alt={product.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
