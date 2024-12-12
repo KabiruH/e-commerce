@@ -6,14 +6,16 @@ import CartPage from '@/app/cart/page';
 
 interface Product {
   id: string;
-  name: string;
+  title: string;
   price: number;
   description: string;
   category: string;
   image: string;
+
 }
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
+
   const { id } = params;
   const product: Product | null = await getProductById(id);
   
@@ -28,7 +30,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
         <div className="relative max-w-md mx-auto md:max-w-12pax">
           <img
             src={product.image}
-            alt={product.name}
+            alt={product.title}
             className="w-full h-auto max-w-md md:max-w-full object-cover rounded-md shadow-md"
           />
           <div className="absolute top-0 left-0 bg-orange-500 text-white text-xs px-3 py-1 rounded-tr-md">
@@ -38,7 +40,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
         
         {/* Right Section: Details */}
         <div className="space-y-6">
-          <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
+          <h1 className="text-3xl font-bold text-gray-800">{product.title}</h1>
           <p className="text-xl text-red-500 font-semibold">KSh {product.price.toFixed(2)}</p>
           <p className="text-gray-700">{product.description}</p>
           <div className="space-y-2">

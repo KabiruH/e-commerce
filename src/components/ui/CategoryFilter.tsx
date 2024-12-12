@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 
 interface Product {
   id: string;
-  name: string;
+  title: string;
   price: number;
   description: string;
   category: string;
@@ -83,14 +83,14 @@ export default function ProductFiltering({
                 <a href={`/product/${product.id}`}>
                   <img
                     src={product.image}
-                    alt={product.name}
+                    alt={product.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
                   />
                   <div className="p-4">
-                    <h2 className="text-xl font-semibold">{product.name}</h2>
+                    <h2 className="text-xl font-semibold">{product.title}</h2>
                     <p className="text-gray-600">{product.category}</p>
-                    <p className="text-lg font-bold text-green-600">Price: ${product.price}</p>
-                    <p className="text-gray-500 text-sm mt-2">{product.description}</p>
+                    <p className="text-lg font-bold text-green-600">Price: Kes{product.price}</p>
+                    {/* <p className="text-gray-500 text-sm mt-2">{product.description}</p> */}
                   </div>
                 </a>
               </Card>

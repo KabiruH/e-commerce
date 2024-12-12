@@ -9,7 +9,7 @@ import { CartModal } from '@/components/ui/CartModal'; // Import the new modal
 interface ProductCartProps {
   product: {
     id: string;
-    name: string;
+    title: string;
     price: number;
   };
 }
@@ -67,7 +67,7 @@ export default function ProductCart({ product }: ProductCartProps) {
           </Button>
         </div>
         <p className="text-sm text-gray-500">
-          Subtotal: ${(product.price * quantity).toFixed(2)}
+          Subtotal: Kes{(product.price * quantity).toFixed(2)}
         </p>
       </div>
 
