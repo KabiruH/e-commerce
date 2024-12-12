@@ -11,38 +11,37 @@ export default function ProductsPage() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      setIsLoading(true); // Add a loading state (optional)
+      setIsLoading(true);
       try {
         const productCategories = await getProductCategories();
         setCategories(productCategories);
-      } catch (error) {
-        setError(error); // Handle errors (optional)
+      } catch (err) {
+        setError(err as Error);
       } finally {
-        setIsLoading(false); // Update loading state (optional)
+        setIsLoading(false);
       }
     };
-  
+
     fetchCategories();
   }, []);
-  
 
   return (
     <div className="flex">
       {/* Category Sidebar */}
-      <div className="w-1/5 p-4 border-r">
+      <div className="w-1/5 p-4 border-r bg-gray-100">
         <h2 className="text-2xl font-bold mb-4">Categories</h2>
         <ul>
-          <li 
+          <li
             key="all"
-            className={`cursor-pointer p-2 ${!selectedCategory ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
+            className={`cursor-pointer p-2 rounded-md ${!selectedCategory ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}`}
             onClick={() => setSelectedCategory(null)}
           >
             All Products
           </li>
           {categories.map(category => (
-            <li 
+            <li
               key={category}
-              className={`cursor-pointer p-2 ${selectedCategory === category ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
+              className={`cursor-pointer p-2 rounded-md ${selectedCategory === category ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}`}
               onClick={() => setSelectedCategory(category)}
             >
               {category}
@@ -50,12 +49,17 @@ export default function ProductsPage() {
           ))}
         </ul>
       </div>
-
       {/* Products Section */}
-      <div className="w-4/5">
-        <ProductFiltering 
-          categories={categories} 
-          selectedCategory={selectedCategory} 
+      <div className="w-4/5 p-8">
+        <div className="bg-[url('/product-background.jpg')] bg-cover bg-center h-64 rounded-md mb-8">
+          <div className="flex flex-col justify-center items-center h-full bg-black bg-opacity-40 text-white rounded-md">
+            <h1 className="text-4xl font-bold mb-4">Featured Products</h1>
+            <p className="text-lg">Discover our latest collection</p>
+          </div>
+        </div>
+        <ProductFiltering
+          categories={categories}
+          selectedCategory={selectedCategory}
         />
       </div>
     </div>
