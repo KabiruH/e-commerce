@@ -5,12 +5,12 @@ This project is an e-commerce web application built with Next.js. It features a 
 
 ## Features
 
-    Dynamic Product Pages: Fetch product data dynamically based on the product ID.
-    Shopping Cart: Add, update, and remove products from the cart.
-    State Management: Uses Redux Toolkit for managing global state.
-    Responsive Design: Built with Tailwind CSS for a seamless experience across devices.
-    Optimized Images: Next.js next/image is used for automatic image optimization.
-    Reusable Components: Modular and reusable UI components for scalability.
+Dynamic Product Pages: Fetch product data dynamically based on the product ID.
+Shopping Cart: Add, update, and remove products from the cart.
+State Management: Uses Redux Toolkit for managing global state.
+Responsive Design: Built with Tailwind CSS for a seamless experience across devices.
+Optimized Images: Next.js next/image is used for automatic image optimization.
+Reusable Components: Modular and reusable UI components for scalability.
 
 ## Installation and Setup
 
@@ -35,23 +35,23 @@ Open your browser and navigate to:
 
 ### Main Dependencies
 
-    Next.js: Framework for server-rendered React applications, chosen for its performance, SEO optimization, and built-in image optimization.
-    React and React DOM: Core libraries for building UI components.
-    Redux Toolkit: Simplifies state management by providing utilities for creating slices and reducers.
-    React Redux: Enables React components to interact with the Redux store.
-    Tailwind CSS: Utility-first CSS framework for creating a responsive design with ease.
-    React Icons: Provides access to a wide range of icons for UI elements.
-    @headlessui/react: For building accessible and unstyled components like dialogs and menus.
-    @radix-ui: Provides unstyled, accessible UI primitives for enhanced user experiences.
-    Tailwind Merge: Helps resolve conflicting class names in Tailwind CSS.
-    Class Variance Authority (CVA): Used for managing class name variants for reusable components.
+Next.js: Framework for server-rendered React applications, chosen for its performance, 
+React and React DOM: Core libraries for building UI components.
+Redux Toolkit: Simplifies state management by providing utilities for creating slices and reducers.
+React Redux: Enables React components to interact with the Redux store.
+Tailwind CSS: Utility-first CSS framework for creating a responsive design with ease.
+React Icons: Provides access to a wide range of icons for UI elements.
+@headlessui/react: For building accessible and unstyled components like dialogs and menus.
+@shadcn-ui: Provides unstyled, accessible UI primitives for enhanced user experiences.
+Tailwind Merge: Helps resolve conflicting class names in Tailwind CSS.
+Class Variance Authority (CVA): Used for managing class name variants for reusable components.
 
 ### Development Dependencies
 
-    TypeScript: Adds static typing to JavaScript for better maintainability and error checking.
-    ESLint: Enforces coding standards and catches potential errors.
-    Tailwind CSS Animate: Provides animations to enhance user interaction.
-    PostCSS: Processes CSS for better compatibility and features like autoprefixing.
+TypeScript: Adds static typing to JavaScript for better maintainability and error checking.
+ESLint: Enforces coding standards and catches potential errors.
+Tailwind CSS Animate: Provides animations to enhance user interaction.
+PostCSS: Processes CSS for better compatibility and features like autoprefixing.
 
 
 ## API Integration
