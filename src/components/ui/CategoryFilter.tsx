@@ -91,7 +91,7 @@ export default function ProductFiltering({
     fill
     sizes="(max-width: 568px) 100vw, (max-width: 1000px) 50vw, 33vw"
     className="object-cover rounded-md"
-    quality={75} // Optional: adjust image quality
+    quality={75} 
   />
 </div>
                   <div className="p-4">

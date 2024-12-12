@@ -37,13 +37,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {/* Left Section: Image */}
         <div className="relative max-w-md mx-auto md:max-w-12pax">
         <div className="relative w-full h-48">
-  <Image
-src={product.image}
-alt={product.title}
-   layout="fill"
-    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-    className="object-cover rounded-md"
-  />
+        <img
+  src={product.image}
+  alt={product.title}
+  className="mb-7 object-cover rounded-md"
+/>
 </div>
        
           <div className="absolute top-0 left-0 bg-orange-500 text-white text-xs px-3 py-1 rounded-tr-md">
