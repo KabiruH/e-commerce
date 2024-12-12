@@ -229,11 +229,10 @@ export const userLogin = async (username, password) => {
 export const getProductCategories = async () => {
   try {
     const response = await fetch(`${BASE_URL}/products/categories`);
-    if (!response.ok) throw new Error('Failed to fetch product categories');
+    if (!response.ok) throw new Error('Failed to fetch categories');
     return await response.json();
   } catch (error) {
-    console.error('Error fetching product categories:', error);
+    console.error('Error fetching categories:', error);
     return [];
   }
 };
-
