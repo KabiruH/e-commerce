@@ -1,97 +1,85 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import { getAllCartProducts, getProductById } from '@/lib/api'; // Adjust import path
-import {  Button } from '@/components/ui/button';
-import {  Table, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
-
-// Define the product type
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    image: string;
-    quantity: number;
-  }
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import { removeFromCart } from '@/redux/cartSlice';
+import { Trash2 } from 'lucide-react';
+import { CartModal } from '@/components/ui/CartModal';
+import {  
+  Table,  
+  TableBody,  
+  TableHead,  
+  TableRow,  
+  TableCell,  
+  TableHeader
+} from '@/components/ui/table';
 
 const CartPage = () => {
-  const [cartProducts, setCartProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const cartProducts = useAppSelector((state) => state.cart.items);
+  const [isCartOpen, setCartOpen] = useState(false);
 
+  // Calculate total cart value
+  const cartTotal = cartProducts.reduce(
+    (total, product) => total + (product.price * product.quantity),
+    0
+  );
 
-  // Fetch cart products when the component mounts
-  useEffect(() => {
-    const fetchCartData = async () => {
-      try {
-        setLoading(true);
-        const carts = await getAllCartProducts();
-        const products = [];
+  // Handle removing an item from the cart
+  const handleRemoveItem = (productId: string) => {
+    dispatch(removeFromCart(productId));
+  };
 
-        // Map through the cart items to fetch individual product details
-        for (const cart of carts) {
-          for (const item of cart.products) {
-            const product = await getProductById(item.productId);
-            products.push({ ...product, quantity: item.quantity });
-          }
-        }
-
-        setCartProducts(products);
-      } catch (error) {
-        console.error('Error fetching cart products:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCartData();
-  }, []);
+  // If cart is empty, return null or a minimal indicator
+  if (cartProducts.length === 0) {
+    return null; // Or you could return a small badge/indicator
+  }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-      {loading ? (
-        <div className="flex justify-center items-center h-64">
-          
-        </div>
-      ) : cartProducts.length > 0 ? (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Quantity</TableCell>
-              <TableCell>Total</TableCell>
+    <>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Product</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead>Quantity</TableHead>
+            <TableHead>Total</TableHead>
+            <TableHead>Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {cartProducts.map((product) => (
+            <TableRow key={product.id}>
+              <TableCell>{product.title}</TableCell>
+              <TableCell>${product.price.toFixed(2)}</TableCell>
+              <TableCell>{product.quantity}</TableCell>
+              <TableCell>${(product.price * product.quantity).toFixed(2)}</TableCell>
+              <TableCell>
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  onClick={() => handleRemoveItem(product.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {cartProducts.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                    <span>{product.title}</span>
-                  </div>
-                </TableCell>
-                <TableCell>${product.price.toFixed(2)}</TableCell>
-                <TableCell>{product.quantity}</TableCell>
-                <TableCell>
-                  ${(product.price * product.quantity).toFixed(2)}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      ) : (
-        <p className="text-center text-gray-500">Your cart is empty.</p>
-      )}
+          ))}
+        </TableBody>
+      </Table>
+     
+      <div className="mt-4 flex justify-between items-center">
+        <span className="text-lg font-bold">Total: ${cartTotal.toFixed(2)}</span>
+        <Button onClick={() => setCartOpen(true)}>
+          Proceed to Checkout
+        </Button>
+      </div>    
 
-      <div className="mt-6 flex justify-end">
-        <Button variant="default">Proceed to Checkout</Button>
-      </div>
-    </div>
+      <CartModal 
+        isOpen={isCartOpen} 
+        onOpenChange={setCartOpen} 
+      />
+    </>
   );
 };
 
