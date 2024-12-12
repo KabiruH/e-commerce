@@ -36,13 +36,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Section: Image */}
         <div className="relative max-w-md mx-auto md:max-w-12pax">
-          <Image
-       width={0}
-       height={0}
-            src={product.image}
-            alt={product.title}
-            className="w-full h-auto max-w-md md:max-w-full object-cover rounded-md shadow-md"
-          />
+        <div className="relative w-full h-48">
+  <Image
+src={product.image}
+alt={product.title}
+   layout="fill"
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+    className="object-cover rounded-md"
+  />
+</div>
+       
           <div className="absolute top-0 left-0 bg-orange-500 text-white text-xs px-3 py-1 rounded-tr-md">
             Single Product
           </div>

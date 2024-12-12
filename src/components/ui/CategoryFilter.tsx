@@ -84,13 +84,16 @@ export default function ProductFiltering({
             {paginatedProducts.map((product) => (
               <Card key={product.id}>
                 <Link href={`/product/${product.id}`}>
-                  <Image
-                  width={0}
-                  height={0}
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-48 object-cover rounded-md mb-4"
-                  />
+                <div className="relative w-full h-48">
+  <Image
+    src={product.image}
+    alt={product.title}
+    fill
+    sizes="(max-width: 568px) 100vw, (max-width: 1000px) 50vw, 33vw"
+    className="object-cover rounded-md"
+    quality={75} // Optional: adjust image quality
+  />
+</div>
                   <div className="p-4">
                     <h2 className="text-xl font-semibold">{product.title}</h2>
                     <p className="text-gray-600">{product.category}</p>
