@@ -51,7 +51,12 @@ export default function ProductsPage() {
       </div>
       {/* Products Section */}
       <div className="w-4/5 p-8">
-        <div className="bg-[url('/product-background.jpg')] bg-cover bg-center h-64 rounded-md mb-8">
+        <div
+          className="bg-cover bg-center h-64 rounded-md mb-8"
+          style={{
+            backgroundImage: `url('/pexels-olly-1050244.jpg')`,
+          }}
+        >
           <div className="flex flex-col justify-center items-center h-full bg-black bg-opacity-40 text-white rounded-md">
             <h1 className="text-4xl font-bold mb-4">Featured Products</h1>
             <p className="text-lg">Discover our latest collection</p>
