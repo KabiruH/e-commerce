@@ -26,7 +26,7 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex m-0 p-0">
       {/* Category Sidebar */}
       <div className="w-1/5 p-4 border-r bg-gray-100">
         <h2 className="text-2xl font-bold mb-4">Categories</h2>
@@ -50,9 +50,9 @@ export default function ProductsPage() {
         </ul>
       </div>
       {/* Products Section */}
-      <div className="w-4/5 p-8">
+      <div className="mt-0 p-10">
         <div
-          className="bg-cover bg-center h-64 rounded-md mb-8"
+          className="mt-0 bg-cover bg-center h-64 rounded-md mb-8"
           style={{
             backgroundImage: `url('/pexels-olly-1050244.jpg')`,
           }}
