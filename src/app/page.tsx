@@ -1,5 +1,4 @@
-import Image from "next/image";
-import CartPage from "@/app/cart/page"
+
 import ProductPage from "@/app/product/page"
 
 

@@ -1,8 +1,10 @@
+import React from 'react';
 import { getProductById } from '@/lib/api.js';
 import { notFound } from 'next/navigation';
-import { Card } from '@/components/ui/card';
 import ProductCart from '@/components/ui/ProductCart';
 import CartPage from '@/app/cart/page';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface Product {
   id: string;
@@ -11,12 +13,18 @@ interface Product {
   description: string;
   category: string;
   image: string;
-
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+// Define the types for the dynamic route params
+interface ProductPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
 
-  const { id } = params;
+// Ensure the async function is correctly typed
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { id } = await (params);
   const product: Product | null = await getProductById(id);
   
   if (!product) {
@@ -28,7 +36,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Section: Image */}
         <div className="relative max-w-md mx-auto md:max-w-12pax">
-          <img
+          <Image
             src={product.image}
             alt={product.title}
             className="w-full h-auto max-w-md md:max-w-full object-cover rounded-md shadow-md"
@@ -56,12 +64,12 @@ export default async function ProductPage({ params }: { params: { id: string } }
           <ProductCart product={product} />
           
           {/* Back to Products Link */}
-          <a
-            href="/products"
+          <Link
+            href="/"
             className="inline-block mt-6 bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200"
           >
             Back to Products
-          </a>
+          </Link>
         </div>
       </div>
       

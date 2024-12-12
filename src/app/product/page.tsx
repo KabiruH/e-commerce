@@ -24,6 +24,7 @@ export default function ProductsPage() {
 
     fetchCategories();
   }, []);
+  console.log(isLoading, error)
 
   return (
     <div className="flex m-0 p-0">

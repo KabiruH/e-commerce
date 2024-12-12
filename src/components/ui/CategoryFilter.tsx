@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { getAllProducts } from '@/lib/api.js';
 import { Card } from '@/components/ui/card';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface Product {
   id: string;
@@ -31,6 +33,7 @@ export default function ProductFiltering({
     };
     fetchProducts();
   }, []);
+  console.log(categories)
 
   
 
@@ -80,8 +83,8 @@ export default function ProductFiltering({
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {paginatedProducts.map((product) => (
               <Card key={product.id}>
-                <a href={`/product/${product.id}`}>
-                  <img
+                <Link href={`/product/${product.id}`}>
+                  <Image
                     src={product.image}
                     alt={product.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
@@ -92,7 +95,7 @@ export default function ProductFiltering({
                     <p className="text-lg font-bold text-green-600">Price: Kes{product.price}</p>
                     {/* <p className="text-gray-500 text-sm mt-2">{product.description}</p> */}
                   </div>
-                </a>
+                </Link>
               </Card>
             ))}
           </div>
