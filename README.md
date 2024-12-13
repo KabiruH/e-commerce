@@ -16,7 +16,7 @@ Reusable Components: Modular and reusable UI components for scalability.
 
 Clone the repository:
 
-            git clone <repository_url>
+            git clone https://github.com/KabiruH/e-commerce
             cd shopping
 
 Install dependencies:
